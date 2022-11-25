@@ -5,6 +5,7 @@ import AboutUs from "../../Pages/AboutUs/AboutUs";
 import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
 import Home from "../../Pages/Home/Home/Home";
 import ContactUs from "../../Pages/Sheard/ContactUs/ContactUs";
+import ProductDetails from "../../Pages/Shop/ProductDetails/ProductDetails";
 import Shop from "../../Pages/Shop/Shop";
 
 const router = createBrowserRouter([
@@ -19,6 +20,11 @@ const router = createBrowserRouter([
             {
                 path: '/shop',
                 element: <Shop></Shop>
+            },
+            {
+                path: '/products/:id',
+                element: <ProductDetails></ProductDetails>,
+                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
             },
             {
                 path: '/about',
