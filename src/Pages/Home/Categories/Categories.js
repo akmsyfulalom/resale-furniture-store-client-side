@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import ProductDetailModal from '../../Sheard/ProductDetailModal/ProductDetailModal';
+
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
-    console.log(categories);
+    const [furniture, setFurniture] = useState(null)
+
 
     useEffect(() => {
         fetch('http://localhost:5000/categories')
@@ -16,22 +19,33 @@ const Categories = () => {
 
             <div className='grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-10'>
                 {
-                    categories?.map(category => <div key={category._id}>
+                    categories?.map(category => <div
+                        key={category._id}
+                        setFurniture={setFurniture}
+
+
+                    >
 
                         <Link to={`/products/${category.category_id}`}>
                             <div className="card  bg-base-300 shadow-4xl">
-                                <figure className="px-10 pt-10">
+                                <figure className="px-5 pt-10">
                                     <img src={category.img} alt="furnitureCategory" className="rounded-xl" />
                                 </figure>
                                 <div className="card-body items-center text-center">
-                                    <h2 className="card-title">{category.name}</h2>
+                                    <h2 className="font-bold">{category.name}</h2>
                                 </div>
                             </div>
-
+                            {
+                                furniture && <ProductDetailModal
+                                    furniture={furniture}
+                                ></ProductDetailModal>
+                            }
                         </Link>
                     </div>)
                 }
             </div>
+
+
         </div>
     );
 };

@@ -6,6 +6,7 @@ const Navbar = () => {
     const menuItems = <>
         <li> <Link to="/">Home</Link> </li>
         <li> <Link to="/shop">Shop</Link> </li>
+        <li> <Link to="/blogs">Blog</Link> </li>
         <li> <Link to="/about">About Us</Link> </li>
         <li> <Link to="/contact">Contact Us</Link> </li>
         <li> <Link to="/dashboard">Dashboard</Link> </li>
@@ -35,7 +36,7 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <button className='btn'>Login</button>
+                    <Link to="/login"><button className='btn'>Login</button></Link>
                     <label htmlFor="dashboard-sidebar-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
                         <FaAlignJustify></FaAlignJustify>
                     </label>

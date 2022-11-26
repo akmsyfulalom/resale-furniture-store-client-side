@@ -1,15 +1,18 @@
 import { useQuery } from '@tanstack/react-query';
-import React from 'react';
+import React, { useState } from 'react';
+import ProductDetailModal from '../Sheard/ProductDetailModal/ProductDetailModal';
 import Products from './Products';
 
 const Shop = () => {
-
+    const [furniture, setFurniture] = useState(null)
     const { data: products = [], } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/products');
             const data = await res.json();
+
             return data;
+
         }
     })
 
@@ -21,10 +24,17 @@ const Shop = () => {
                     products?.map(product => <Products
                         key={product._id}
                         product={product}
+                        setFurniture={setFurniture}
+
                     ></Products>)
                 }
             </div>
-        </div>
+            {
+                furniture && <ProductDetailModal
+                    furniture={furniture}
+                ></ProductDetailModal>
+            }
+        </div >
     );
 };
 

@@ -1,10 +1,15 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 
-const Products = ({ product }) => {
-    const { title, dec, product_img
-    } = product;
-    console.log(product)
+
+
+const Products = ({ product, setFurniture, }) => {
+    const { title, dec, product_img } = product;
+
+
+
+
+
     return (
 
         <div>
@@ -22,11 +27,18 @@ const Products = ({ product }) => {
                 <div className="card-body">
                     <h2 className="card-title">{title}</h2>
                     <p>{dec}</p>
-                    <div className="card-actions justify-end">
-                        <button className="btn btn-primary">Buy Now</button>
+                    <div className="card-actions justify-end" >
+                        <label
+                            onClick={() => setFurniture(product)}
+                            htmlFor="booking-modal"
+                            className="btn"
+                        >Book now</label>
                     </div>
+
                 </div>
+
             </div>
+
 
         </div>
     );
