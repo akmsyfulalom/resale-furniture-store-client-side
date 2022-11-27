@@ -1,7 +1,9 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import ProductDetailModal from '../Sheard/ProductDetailModal/ProductDetailModal';
+import Categories from '../Home/Categories/Categories';
 import Products from './Products';
+import Tabs from './Tabs/Tabs';
+import ViewProductModal from './ViewProductModal';
 
 const Shop = () => {
     const [furniture, setFurniture] = useState(null)
@@ -16,8 +18,12 @@ const Shop = () => {
         }
     })
 
+    console.log(products)
+
     return (
         <div>
+
+            <Tabs></Tabs>
             <h1>Shop</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10'>
                 {
@@ -30,9 +36,9 @@ const Shop = () => {
                 }
             </div>
             {
-                furniture && <ProductDetailModal
+                furniture && <ViewProductModal
                     furniture={furniture}
-                ></ProductDetailModal>
+                ></ViewProductModal>
             }
         </div >
     );

@@ -28,16 +28,14 @@ const Products = ({ product, setFurniture, }) => {
                     <h2 className="card-title">{title}</h2>
                     <p>{dec}</p>
                     <div className="card-actions justify-end" >
-                        <label
-                            onClick={() => setFurniture(product)}
-                            htmlFor="booking-modal"
-                            className="btn"
-                        >Book now</label>
+                        <label htmlFor="booking-modal" onClick={() => setFurniture(product)}
+                            className="btn">now</label>
                     </div>
 
                 </div>
 
             </div>
+
 
 
         </div>

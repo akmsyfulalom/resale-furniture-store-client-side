@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { FaAlignJustify } from "react-icons/fa";
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 const Navbar = () => {
+    const { user, LogOut } = useContext(AuthContext);
     const menuItems = <>
         <li> <Link to="/">Home</Link> </li>
         <li> <Link to="/shop">Shop</Link> </li>
@@ -11,11 +13,14 @@ const Navbar = () => {
         <li> <Link to="/contact">Contact Us</Link> </li>
         <li> <Link to="/dashboard">Dashboard</Link> </li>
 
-
-
-
-
     </>
+    const handleLogOut = () => {
+        LogOut()
+            .then(() => {
+
+            })
+            .then(error => console.log(error));
+    }
     return (
         <div>
             <div className="navbar px-2 ">
@@ -28,7 +33,7 @@ const Navbar = () => {
                             {menuItems}
                         </ul>
                     </div>
-                    <a className=" normal-case text-xl">Resale furniture store</a>
+                    <Link className=" normal-case text-xl">Resale furniture store</Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal p-0">
@@ -36,7 +41,15 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to="/login"><button className='btn'>Login</button></Link>
+                    {
+                        user?.uid ? <>
+                            <button onClick={handleLogOut} className="btn btn-ghost">Log Out</button>
+                        </>
+                            :
+                            <>
+                                <Link to="/login"><button className='btn'>Login</button></Link>
+                            </>
+                    }
                     <label htmlFor="dashboard-sidebar-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
                         <FaAlignJustify></FaAlignJustify>
                     </label>

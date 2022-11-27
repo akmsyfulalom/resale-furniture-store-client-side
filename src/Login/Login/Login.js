@@ -9,7 +9,7 @@ import useTitle from '../../Hooks/TitleHooks/Title.Hooks';
 
 const Login = () => {
     useTitle('Login')
-    const { logIn } = useContext(AuthContext);
+    const { userLogin } = useContext(AuthContext);
     const { register, formState: { errors }, handleSubmit } = useForm();
     const [loginError, setLoginError] = useState('');
     const [logInUserEmail, setLogInUserEmail] = useState('');
@@ -25,11 +25,12 @@ const Login = () => {
     const handleLogin = data => {
         console.log(data)
         setLoginError('')
-        logIn(data.email, data.password)
+        userLogin(data.email, data.password)
             .then((result) => {
                 const user = result.user;
                 toast.success('User successfully login now')
                 console.log(user)
+                navigate('/')
                 setLogInUserEmail(data.email);
 
             })
@@ -42,7 +43,7 @@ const Login = () => {
     return (
         <div className='h-[700px] flex justify-center items-center'>
             <div className='w-96 shadow-xl px-5 py-10 rounded-xl'>
-                <h3 className='text-xl text-center'>Login</h3>
+                <h3 className='text-xl text-center'>Sign In</h3>
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control w-full ">
                         <label className="label"><span className="label-text">Email</span></label>
@@ -61,8 +62,7 @@ const Login = () => {
                             })}
                             className="input input-bordered w-full " />
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
-                        <label className="label"><span className="label-text">Forget password</span></label>
-
+                        <label className="label"><span className="label-text">Forget password?</span></label>
                     </div>
                     <input className='btn btn-accent w-full ' type="submit" value='Login' />
                     <div>

@@ -7,12 +7,13 @@ const Blogs = () => {
     return (
         <div>
             <h1>Blogs</h1>
+
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10'>
                 {
                     blogs.map(blog => <div
                         key={blog._id}
                     >
-                        <div className="card card-compact bg-base-200 shadow-xl p-10">
+                        <div className="card h-96 card-compact bg-base-200 shadow-xl p-5">
                             <figure><img src={blog.img} alt="Shoes" /></figure>
                             <div className="card-body">
                                 <h2 className="card-title">{blog.title}</h2>

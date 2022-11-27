@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ProductDetailModal = ({ furniture }) => {
-    const { title, dec, product_img, seller_name, post_time, category } = furniture
+    const { title, dec, product_img, seller_name, post_time, category } = furniture;
     console.log(furniture);
     return (
         <div>

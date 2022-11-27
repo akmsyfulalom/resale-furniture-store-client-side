@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import ProductDetailModal from '../../Sheard/ProductDetailModal/ProductDetailModal';
+import ViewProductModal from '../../Shop/ViewProductModal'
+
 
 
 const Categories = () => {
     const [categories, setCategories] = useState([])
     const [furniture, setFurniture] = useState(null)
+    console.log(furniture)
 
 
     useEffect(() => {
@@ -21,13 +23,8 @@ const Categories = () => {
                 {
                     categories?.map(category => <div
                         key={category._id}
-                        setFurniture={setFurniture}
-
-
-                    >
-
-                        <Link to={`/products/${category.category_id}`}>
-                            <div className="card  bg-base-300 shadow-4xl">
+                    ><Link to={`/products/${category.category_id}`}>
+                            <div className="card h-64 bg-base-300 shadow-4xl">
                                 <figure className="px-5 pt-10">
                                     <img src={category.img} alt="furnitureCategory" className="rounded-xl" />
                                 </figure>
@@ -35,15 +32,15 @@ const Categories = () => {
                                     <h2 className="font-bold">{category.name}</h2>
                                 </div>
                             </div>
-                            {
-                                furniture && <ProductDetailModal
-                                    furniture={furniture}
-                                ></ProductDetailModal>
-                            }
                         </Link>
                     </div>)
                 }
             </div>
+            {
+                furniture && <ViewProductModal
+                    furniture={furniture}
+                ></ViewProductModal>
+            }
 
 
         </div>

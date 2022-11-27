@@ -39,7 +39,7 @@ const SignUp = () => {
                 }
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email)
+                        saveUserDatabase(data.name, data.email, data.role)
 
                     })
                     .catch(err => console.log(err))
@@ -50,8 +50,8 @@ const SignUp = () => {
             })
 
     }
-    const saveUser = (name, email) => {
-        const user = { name, email };
+    const saveUserDatabase = (name, email, role) => {
+        const user = { name, email, role };
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -61,6 +61,8 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log('save user with database', data);
+                navigate('/')
                 // setCreatedUserEmail(email)
             })
 
@@ -89,7 +91,7 @@ const SignUp = () => {
                         {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
                     </div>
                     <div className="form-control w-full ">
-                        <label className="label"><span className="label-text">Password</span></label>
+                        <label className="label"><span className="label-text">assword</span></label>
                         <input type="password" {...register("password", {
                             required: "Password is required",
                             minLength: { value: 6, message: "Password must be 6 character or longer" },
@@ -98,6 +100,12 @@ const SignUp = () => {
                         })} className="input input-bordered w-full " />
                         {errors.password && <p className='text-red-600'>{errors.password.message}</p>}
                     </div>
+                    <select className='w-full mt-5 input input-bordered' {...register("role", { required: true })}>
+                        <option disabled >Please Select one </option>
+                        <option value="seller">Seller</option>
+                        <option value="buyer">Buyer</option>
+
+                    </select>
                     <input className='btn btn-accent w-full mt-5 ' type="submit" value='Sign Up' />
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
