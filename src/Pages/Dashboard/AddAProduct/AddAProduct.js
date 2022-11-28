@@ -35,6 +35,10 @@ const AddProduct = () => {
         const productsImg = form.product_img.files[0];
         const years_of_used = form.years_of_used.value;
         const post_time = form.post_time.value;
+        const category = form.category.value;
+        const displayName = form.name.value;
+        const email = form.email.value;
+
         const formData = new FormData();
         formData.append('image', productsImg)
         const url = `https://api.imgbb.com/1/upload?key=${hostImgbbKey}`
@@ -54,6 +58,9 @@ const AddProduct = () => {
                         product_img: imgData.data.url,
                         years_of_used: years_of_used,
                         post_time: post_time,
+                        category: category,
+                        displayName: displayName,
+                        email: email
                     }
                     fetch('http://localhost:5000/products', {
                         method: 'POST',
@@ -83,83 +90,94 @@ const AddProduct = () => {
     return (
         <div>
 
-            <div className='bg-base-200 '>
-                <div className="hero min-h-screen bg-base-200 ">
 
-                    <form onSubmit={handleAddProduct}>
+            <div className="hero  bg-base-200 ">
 
-                        <div className="card flex-shrink-0 w-full max-w-3xl shadow-2xl bg-base-100 p-16">
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Furniture Name</span>
-                                </label>
-                                <input type="text" name='title' className="input input-bordered" />
-                            </div>
-                            <div className='grid grid-cols-2 gap-4'>
-                                <div className="form-control col-span-1">
-                                    <label className="label">
-                                        <span className="label-text">Original price</span>
-                                    </label>
-                                    <input type="text" name='original_price' className="input input-bordered" />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Resale Price</span>
-                                    </label>
-                                    <input type="text" name='resale_price' className="input input-bordered" />
-                                </div>
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text mt-2">Image</span>
-                                </label>
-                                <input type="file" name='product_img' className="input input-bordered pt-2 input_photo" />
-                            </div>
-                            <div className='grid grid-cols-2 gap-4'>
-                                <div className="form-control col-span-1">
-                                    <label className="label">
-                                        <span className="label-text">Location</span>
-                                    </label>
-                                    <input type="text" name='location' className="input input-bordered" />
-                                </div>
-                                <div className="form-control">
-                                    <label className="label">
-                                        <span className="label-text">Used of year</span>
-                                    </label>
-                                    <input type="text" name='years_of_used' className="input input-bordered" />
-                                </div>
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Category</span>
-                                </label>
-                                <select className='input input-bordered ' name='category'>
-                                    <option value="beds">Beds</option>
-                                    <option value="Wooden">Wooden</option>
-                                    <option value="Bamboo">Bamboo</option>
-                                    <option value="Wicker">Wicker</option>
-                                    <option value="Metal">Metal</option>
-                                </select>
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text">Date</span>
-                                </label>
-                                <input type="text" name='post_time' className="input input-bordered input_photo" />
-                            </div>
-                            <div className="form-control">
-                                <label className="label">
-                                    <span className="label-text mt-2">Description</span>
-                                </label>
-                                <textarea name='dec' className="textarea input-bordered" ></textarea>                        </div>
-                            <input className='btn btn-accent w-full mt-5 ' type="submit" value='Add a product' />
+                <form onSubmit={handleAddProduct}>
+
+                    <div className="card flex-shrink-0 w-full shadow-2xl bg-base-100 px-10 my-10 py-5">
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Furniture Name</span>
+                            </label>
+                            <input type="text" name='title' className="input h-10 input-bordered" />
                         </div>
+                        <div className='grid grid-cols-2 gap-4'>
+                            <div className="form-control col-span-1">
+                                <label className="label">
+                                    <span className="label-text">Original price</span>
+                                </label>
+                                <input type="text" name='original_price' className="input h-10  input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Resale Price</span>
+                                </label>
+                                <input type="text" name='resale_price' className="input h-10 input-bordered" />
+                            </div>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text mt-2">Image</span>
+                            </label>
+                            <input type="file" name='product_img' className="input h-10 input-bordered pt-1 input_photo" />
+                        </div>
+                        <div className='grid grid-cols-2 gap-4'>
+                            <div className="form-control col-span-1">
+                                <label className="label">
+                                    <span className="label-text">Location</span>
+                                </label>
+                                <input type="text" name='location' className="input h-10 input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Used of year</span>
+                                </label>
+                                <input type="text" name='years_of_used' className="input h-10 input-bordered" />
+                            </div>
+                        </div>
+                        <div className='grid grid-cols-2 gap-4'>
+                            <div className="form-control col-span-1">
+                                <label className="label">
+                                    <span className="label-text">Email</span>
+                                </label>
+                                <input type="text" name='email' readOnly defaultValue={user?.email} className="input h-10 input-bordered" />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">Name</span>
+                                </label>
+                                <input type="text" name='name' defaultValue={user?.displayName} className="input h-10 input-bordered" />
+                            </div>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Category</span>
+                            </label>
+                            <select className='input h-10 input-bordered ' name='category'>
+                                <option value="beds">Beds</option>
+                                <option value="Wooden">Wooden</option>
+                                <option value="Bamboo">Bamboo</option>
+                                <option value="Wicker">Wicker</option>
+                                <option value="Metal">Metal</option>
+                            </select>
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Date</span>
+                            </label>
+                            <input type="text" name='post_time' className="input h-10 input-bordered input_photo" />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text mt-2">Description</span>
+                            </label>
+                            <textarea name='dec' className="textarea input-bordered" ></textarea>                        </div>
+                        <input className='btn btn-accent w-full mt-5 ' type="submit" value='Add a product' />
+                    </div>
 
-                    </form>
-                </div>
+                </form>
             </div>
-
-
         </div >
     );
 };
