@@ -31,7 +31,7 @@ const AllSeller = () => {
                         </thead>
                         <tbody>
                             {
-                                users?.map((user, i) => <tr className="hover">
+                                users?.map((user, i) => <tr key={user._id} className="hover">
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>

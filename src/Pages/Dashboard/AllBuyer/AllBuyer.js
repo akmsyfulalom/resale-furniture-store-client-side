@@ -26,14 +26,14 @@ const AllBuyer = () => {
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>Seller name</th>
+                                <th>Buyer name</th>
                                 <th>Email</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                users?.map((user, i) => <tr className="hover">
+                                users?.map((user, i) => <tr key={user._id} className="hover">
                                     <th>{i + 1}</th>
                                     <td>{user.name}</td>
                                     <td>{user.email}</td>

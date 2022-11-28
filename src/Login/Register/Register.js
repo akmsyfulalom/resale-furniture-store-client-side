@@ -91,7 +91,7 @@ const SignUp = () => {
                         {errors.email && <p className='text-red-600'>{errors.email.message}</p>}
                     </div>
                     <div className="form-control w-full ">
-                        <label className="label"><span className="label-text">assword</span></label>
+                        <label className="label"><span className="label-text">password</span></label>
                         <input type="password" {...register("password", {
                             required: "Password is required",
                             minLength: { value: 6, message: "Password must be 6 character or longer" },

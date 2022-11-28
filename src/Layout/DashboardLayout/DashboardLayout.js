@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link, Outlet } from 'react-router-dom';
+import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
+import useAdmin from '../../Hooks/useAdmin/useAdmin';
+import useBuyer from '../../Hooks/useBuyer/useBuyer';
+import useSeller from '../../Hooks/useSeller/useSeller';
 import Navbar from '../../Pages/Sheard/Navbar/Navbar';
 
 const DashboardLayout = () => {
+    const { user } = useContext(AuthContext);
+
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
+    const [isBuyer] = useBuyer(user?.email);
     return (
         <div>
             <Navbar></Navbar>
@@ -14,13 +23,29 @@ const DashboardLayout = () => {
                 <div className="drawer-side">
                     <label htmlFor="dashboard-sidebar-drawer" className="drawer-overlay"></label>
                     <ul className="menu p-4 w-80 bg-base-100 text-base-content">
-                        <li><Link to="/dashboard/allSeller">All Seller</Link></li>
-                        <li><Link to="/dashboard/allBuyer">All Buyer</Link></li>
-                        <li><Link to="/dashboard/myOrders">My Orders</Link></li>
-                        <li><Link to="/dashboard/myProduct">My Product</Link></li>
-                        <li><Link to="/dashboard/myBuyers">My Buyers</Link></li>
-                        <li><Link to="/dashboard/addProduct">Add Product</Link></li>
-                        <li><Link to="/dashboard/reportedItems">Reported Items</Link></li>
+                        {
+                            isAdmin && <>
+                                <li><Link to="/dashboard/allSeller">All Seller</Link></li>
+                                <li><Link to="/dashboard/allBuyer">All Buyer</Link></li>
+                                <li><Link to="/dashboard/reportedItems">Reported Items</Link></li>
+                            </>
+                        }
+                        {
+                            isBuyer && <>
+                                <li><Link to="/dashboard/myOrders">My Orders</Link></li>
+                            </>
+
+                        }
+                        {
+                            isSeller && <>
+                                <li><Link to="/dashboard/myProduct">My Product</Link></li>
+                                <li><Link to="/dashboard/myBuyers">My Buyers</Link></li>
+                                <li><Link to="/dashboard/addProduct">Add Product</Link></li>
+
+
+                            </>
+                        }
+
                     </ul>
 
                 </div>

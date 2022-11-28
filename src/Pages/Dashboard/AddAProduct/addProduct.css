@@ -1,0 +1,8 @@
+.input_photo::file-selector-button {
+    border-radius: 20px;
+    font-weight: 500;
+    color: rgb(28, 28, 63);
+    padding: 0 10px;
+    border: 2px dashed rgb(28, 28, 63);
+    background: transparent;
+}
