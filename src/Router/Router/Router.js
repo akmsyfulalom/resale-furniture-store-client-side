@@ -9,7 +9,6 @@ import ViewBlog from "../../Pages/Blogs/ViewBlog";
 import AddAProduct from "../../Pages/Dashboard/AddAProduct/AddAProduct";
 import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
-import MyBuyers from "../../Pages/Dashboard/MyBuyers/MyBuyers";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import ReportItems from "../../Pages/Dashboard/ReportItems/ReportItems";
@@ -102,10 +101,7 @@ const router = createBrowserRouter([
                 path: '/dashboard/myProduct',
                 element: <MyProduct></MyProduct>
             },
-            {
-                path: '/dashboard/myBuyers',
-                element: <MyBuyers></MyBuyers>
-            },
+
             {
                 path: '/dashboard/addProduct',
                 element: <AddAProduct></AddAProduct>

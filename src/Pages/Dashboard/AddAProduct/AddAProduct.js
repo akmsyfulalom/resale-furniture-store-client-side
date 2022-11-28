@@ -1,6 +1,7 @@
 
 import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../Hooks/TitleHooks/Title.Hooks';
 import './addProduct.css'
@@ -9,20 +10,10 @@ import './addProduct.css'
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
     useTitle('Add Product');
+    const navigate = useNavigate()
 
     const hostImgbbKey = process.env.REACT_APP_imgbb_key;
     console.log(hostImgbbKey);
-
-
-    // const { data: products = [] } = useQuery({
-    //     queryKey: ['products'],
-    //     queryFn: async () => {
-    //         const res = await fetch('http://localhost:5000/products');
-    //         const data = await res.json();
-
-    //         return data;
-    //     }
-    // })
 
     const handleAddProduct = (event) => {
         event.preventDefault();
@@ -74,6 +65,7 @@ const AddProduct = () => {
                             if (data.acknowledged) {
                                 toast.success('Successfully added your a Product');
                                 form.reset();
+                                navigate('/dashboard/myProduct');
                                 console.log(data);
                             }
                         })
