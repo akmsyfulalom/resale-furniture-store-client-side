@@ -1,6 +1,6 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
-
+import ViewProductModal from '../../../Shop/ViewProductModal';
 const CategoriProductsCard = ({ category }) => {
     const { title, location, product_img
         , resale_price, dec } = category
@@ -20,24 +20,17 @@ const CategoriProductsCard = ({ category }) => {
                     <h2 className="card-title">{title}</h2>
                     <p>{dec.slice(0, 100) + '...'}</p>
                     <div className="card-actions justify-end" >
-                        <label htmlFor="my-modal-6" className="btn">Book Now</label>
+                        <label htmlFor="booking-modal" className="btn">Book Now</label>
                     </div>
 
                 </div>
 
             </div>
-            <div>
-                <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-                <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box">
-                        <h3 className="font-bold text-lg">{title}</h3>
-                        <p className="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                        <div className="modal-action">
-                            <label htmlFor="my-modal-6" className="btn">Yay!</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {
+                category && <ViewProductModal
+                    furniture={category}
+                ></ViewProductModal>
+            }
         </div>
     );
 };

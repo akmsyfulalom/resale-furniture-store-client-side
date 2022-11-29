@@ -13,7 +13,7 @@ const AddProduct = () => {
     const navigate = useNavigate()
 
     const hostImgbbKey = process.env.REACT_APP_imgbb_key;
-    console.log(hostImgbbKey);
+
 
     const handleAddProduct = (event) => {
         event.preventDefault();
@@ -27,7 +27,7 @@ const AddProduct = () => {
         const years_of_used = form.years_of_used.value;
         const post_time = form.post_time.value;
         const category = form.category.value;
-        const displayName = form.name.value;
+        const seller_name = form.seller_name.value;
         const email = form.email.value;
 
         const formData = new FormData();
@@ -50,7 +50,7 @@ const AddProduct = () => {
                         years_of_used: years_of_used,
                         post_time: post_time,
                         category: category,
-                        displayName: displayName,
+                        seller_name: seller_name,
                         email: email
                     }
                     fetch('http://localhost:5000/products', {
@@ -139,7 +139,7 @@ const AddProduct = () => {
                                 <label className="label">
                                     <span className="label-text">Name</span>
                                 </label>
-                                <input type="text" name='name' defaultValue={user?.displayName} className="input h-10 input-bordered" />
+                                <input type="text" name='seller_name' defaultValue={user?.displayName} className="input h-10 input-bordered" />
                             </div>
                         </div>
                         <div className="form-control">

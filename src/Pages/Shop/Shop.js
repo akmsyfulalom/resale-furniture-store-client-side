@@ -1,6 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
-import Categories from '../Home/Categories/Categories';
+
 import Products from './Products';
 import Tabs from './Tabs/Tabs';
 import ViewProductModal from './ViewProductModal';

@@ -8,6 +8,7 @@ import ConfirmationModal from '../../Sheard/ConfirmationModal/ConfirmationModal'
 const MyProduct = () => {
     const { user } = useContext(AuthContext)
     const [deletingProduct, setDeletingProduct] = useState(null)
+    console.log(deletingProduct)
     const closeModal = () => {
         setDeletingProduct(null)
 
@@ -39,6 +40,22 @@ const MyProduct = () => {
 
     }
 
+    const handleAdsRun = id => {
+        fetch(`http://localhost:5000/advertisement/${id}`, {
+            method: 'PUT',
+            headers: {
+                authorization: `bearer ${localStorage.getItem('accessToken')}`
+            }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Successfully Ads campaign run')
+                    refetch();
+                }
+            })
+    }
+
     return (
         <div>
             <h1>My Product: {products.length}</h1>
@@ -61,7 +78,7 @@ const MyProduct = () => {
                                 <th>{i + 1}</th>
                                 <td><img className='w-16' src={product?.product_img} alt="" /></td>
                                 <td>{product?.title?.slice(0, 30) + '...'}</td>
-                                <td><button className='btn btn-sm btn-success hover text-white'>Start Ads</button></td>
+                                <td><button onClick={() => handleAdsRun(product._id)} className='btn btn-sm btn-success hover text-white'>Start Ads</button></td>
                                 <td>
                                     <label onClick={() => setDeletingProduct(product)} htmlFor="confirmation-modal" className="btn btn-error btn-sm text-white hover">Delete</label>
 
@@ -74,7 +91,8 @@ const MyProduct = () => {
                 </table>
             </div>
             {
-                deletingProduct && <ConfirmationModal
+                deletingProduct &&
+                <ConfirmationModal
                     title={`Are you sure you want to delete?`}
                     message={`If you delete, ${deletingProduct.title}  will be permanently deleted!`}
                     closeModal={closeModal}
