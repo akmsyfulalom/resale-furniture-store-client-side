@@ -13,6 +13,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
 import ReportItems from "../../Pages/Dashboard/ReportItems/ReportItems";
 import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
+import WishList from "../../Pages/Dashboard/WishList/WishList";
 import CategoriesProduct from "../../Pages/Home/Categories/CategoriesProduct/CategoriesProduct";
 import Home from "../../Pages/Home/Home/Home";
 import ContactUs from "../../Pages/Sheard/ContactUs/ContactUs";
@@ -105,6 +106,10 @@ const router = createBrowserRouter([
                 path: '/dashboard/myOrders',
                 element: <MyOrders></MyOrders>
             },
+            {
+                path: '/dashboard/wishlist',
+                element: <WishList></WishList>
+            }
         ]
     }
 

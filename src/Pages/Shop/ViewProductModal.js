@@ -12,8 +12,6 @@ const ProductDetailModal = ({ furniture }) => {
 
     const navigate = useNavigate()
 
-
-
     const handleBooking = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -23,10 +21,7 @@ const ProductDetailModal = ({ furniture }) => {
         const price = form.price.value;
         const img = form.img.value;
         const meet = form.meet.value;
-
-        console.log(number, title, price, img, meet, email);
         const addedOrders = {
-
             email, number, title, price, img, meet,
         }
         fetch('http://localhost:5000/addedorders', {
@@ -38,23 +33,14 @@ const ProductDetailModal = ({ furniture }) => {
         })
             .then(res => res.json())
             .then(data => {
-
                 if (data.acknowledged) {
                     toast.success('Order added successfully')
                     form.reset()
                     navigate('/dashboard/myOrders')
                     console.log(data);
-
                 }
-
-
             })
-
-
-
-
-    }
-
+    };
 
     return (
         <div className='px-10'>

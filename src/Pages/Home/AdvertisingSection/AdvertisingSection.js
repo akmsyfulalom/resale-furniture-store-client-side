@@ -3,11 +3,15 @@ import React, { useState } from 'react';
 import ViewProductModal from '../../Shop/ViewProductModal';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 
 const AdvertisingSection = () => {
     const [furniture, setFurniture] = useState(null)
+
+    const navigate = useNavigate();
 
     const { data: advertisement = [] } = useQuery({
 
@@ -19,6 +23,38 @@ const AdvertisingSection = () => {
             return data;
         }
     })
+
+    const handleAdsPageToWishlist = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const name = form.name.value;
+        const image = form.image.value;
+        const price = form.price.value;
+        const email = form.email.value;
+
+        console.log(name, image, price, email)
+        const adsPageToWishlist = { name, image, price, email }
+
+        fetch('http://localhost:5000/wishlist', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(adsPageToWishlist)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.acknowledged) {
+                    toast.success('Successfully added to wishlist')
+                    navigate('/dashboard/wishlist')
+                    form.reset()
+                    console.log(data)
+                }
+
+            })
+
+
+    }
 
     return (
         <div className='mt-20'>
@@ -62,11 +98,19 @@ const AdvertisingSection = () => {
                             </div>
 
                             <div className='mx-1 mb-1'>
-                                <div className="card-actions justify-end" >
+                                <div className="card-actions" >
                                     <label htmlFor="booking-modal" onClick={() => setFurniture(ads)}
                                         className="btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary">Book Now</label>
                                 </div>
-                                <button className="btn w-full btn-info text-white bg-gradient-to-r from-orange-300 to-lime-500">Wish List</button>
+                                <form onSubmit={handleAdsPageToWishlist} >
+                                    <input className='hidden' type="text" name='name' defaultValue={ads.title} />
+                                    <input className='hidden' type="text" name='image' defaultValue={ads.product_img} />
+                                    <input className='hidden' type="text" name='price' defaultValue={ads.resale_price} />
+                                    <input className='hidden' type="text" name='email' defaultValue={ads.email} />
+
+                                    <button type='submit' className="btn w-full btn-info text-white bg-gradient-to-r from-orange-300 to-lime-500">Wish List</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>)

@@ -47,7 +47,7 @@ const MyOrders = () => {
 
                                 <td>{order.meet}</td>
                                 <td>${order.price}</td>
-                                <td><button className='btn btn-xs'>Pay</button></td>
+                                <td><button className='btn btn-xs btn-success  text-white bg-gradient-to-r from-secondary to-primary'>Pay</button></td>
                             </tr>)
                         }
 
