@@ -82,10 +82,10 @@ const AddProduct = () => {
 
 
     return (
-        <div>
+        <div className='font-mono font-semibold'>
 
 
-            <div className="hero  bg-base-200 ">
+            <div className="hero  bg-gradient-to-r from-violet-100 to-violet-300 grid grid-cols-1">
 
                 <form onSubmit={handleAddProduct}>
 
@@ -172,7 +172,7 @@ const AddProduct = () => {
                                 <span className="label-text mt-2">Description</span>
                             </label>
                             <textarea name='dec' className="textarea input-bordered" ></textarea>                        </div>
-                        <input className='btn btn-accent w-full mt-5 ' type="submit" value='Add a product' />
+                        <input className='btn mt-4 btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary' type="submit" value='Add a product' />
                     </div>
 
                 </form>

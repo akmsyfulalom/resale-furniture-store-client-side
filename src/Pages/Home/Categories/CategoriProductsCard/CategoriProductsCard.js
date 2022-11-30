@@ -57,7 +57,7 @@ const CategoriProductsCard = ({ category }) => {
                     </div>
 
                     <div className='mx-1 mb-1'>
-                        <div className="card-actions justify-end" >
+                        <div className="card-actions " >
                             <label htmlFor="booking-modal"
                                 className="btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary">Book Now</label>
                         </div>

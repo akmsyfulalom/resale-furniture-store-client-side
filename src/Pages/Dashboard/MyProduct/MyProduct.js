@@ -57,8 +57,8 @@ const MyProduct = () => {
     }
 
     return (
-        <div>
-            <h1>My Product: {products.length}</h1>
+        <div className='font-mono font-semibold'>
+            <h1 className='pb-2 font-mono font-semibold text-xl'>My Product: {products.length}</h1>
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">

@@ -36,7 +36,7 @@ const AdvertisingSection = () => {
                             </div>
                             <div >
                                 <h3 className='font-serif font-bold'>{ads.seller_name}</h3>
-                                <span className='font-thin'>{ads.email}</span>
+                                <span className='font-thin text-sm'>{ads.email}</span>
 
                             </div>
                         </div>
@@ -47,18 +47,18 @@ const AdvertisingSection = () => {
                             </PhotoView>
                         </PhotoProvider>
                         <div className="card-body">
-                            <h2 className="card-title">{ads.title}</h2>
-                            <div className='flex justify-between mx-5'>
+                            <h2 className="card-title text-2xl">{ads.title}</h2>
+                            <div className='flex justify-between '>
                                 <div className='flex justify-center items-center '><  FaCalendarAlt /> <span className='ml-1'>{ads.post_time}</span></div>
                                 <div className='flex justify-center items-center '>
                                     < FaMapMarkerAlt />
                                     <span className='ml-1'>{ads.location}</span>
                                 </div>
                             </div>
-                            <div className='ml-5'>
+                            <div className=''>
                                 <p >Used : <span className='font-semibold'>{ads.years_of_used}</span> year</p>
-                                <p>Original price: <span>{ads.original_price}</span></p>
-                                <p>Resale price: <span>{ads.resale_price}</span></p>
+                                <p>Original price: <span>${ads.original_price}</span></p>
+                                <p className='font-semibold'>Resale price: <span className='text-xl text-amber-500'>${ads.resale_price}</span></p>
                             </div>
 
                             <div className='mx-1 mb-1'>

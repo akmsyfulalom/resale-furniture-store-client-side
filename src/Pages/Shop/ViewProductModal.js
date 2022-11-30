@@ -1,33 +1,59 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../contexts/AuthProvider/AuthProvider';
 import './viewProductModal.css'
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 
 const ProductDetailModal = ({ furniture }) => {
     const { user } = useContext(AuthContext);
 
-    const { title, post_time, category, resale_price, original_price } = furniture;
+    const { title, post_time, category, resale_price, original_price, product_img } = furniture;
+
+    const navigate = useNavigate()
 
 
 
     const handleBooking = (e) => {
         e.preventDefault();
         const form = e.target;
+        const email = form.email.value;
         const number = form.number.value;
         const title = form.title.value;
         const price = form.price.value;
+        const img = form.img.value;
+        const meet = form.meet.value;
 
-        console.log(number, title);
+        console.log(number, title, price, img, meet, email);
+        const addedOrders = {
+
+            email, number, title, price, img, meet,
+        }
+        fetch('http://localhost:5000/addedorders', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(addedOrders)
+        })
+            .then(res => res.json())
+            .then(data => {
+
+                if (data.acknowledged) {
+                    toast.success('Order added successfully')
+                    form.reset()
+                    navigate('/dashboard/myOrders')
+                    console.log(data);
+
+                }
+
+
+            })
+
+
+
+
     }
-
-
-
-
-
-
-
-
-
 
 
     return (
@@ -60,6 +86,7 @@ const ProductDetailModal = ({ furniture }) => {
 
                         <div className=''>
                             <input type="text" name='title' disabled defaultValue={title} className=" hidden    input   w-full  mb-4 " />
+                            <input type="text" name='img' disabled defaultValue={product_img} className=" hidden    input   w-full  mb-4 " />
 
                             <input type="text" name='price' defaultValue={resale_price} className=" input hidden  input-bordered    w-full  mb-4" />
 

@@ -32,9 +32,9 @@ const AllBuyer = () => {
 
 
     return (
-        <div>
+        <div className='font-mono font-semibold'>
 
-            <h1 className='text-xl font-semibold'>All seller : {users?.length}</h1>
+            <h1 className='text-xl font-semibold pb-2'>All seller : {users?.length}</h1>
 
             <div>
                 <div className="overflow-x-auto">
@@ -45,6 +45,7 @@ const AllBuyer = () => {
                                 <th></th>
                                 <th>Buyer name</th>
                                 <th>Email</th>
+                                <th>Verification</th>
                                 <th>Action</th>
                             </tr>
                         </thead>

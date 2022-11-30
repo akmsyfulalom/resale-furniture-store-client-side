@@ -50,8 +50,8 @@ const Navbar = () => {
                                 <Link to="/login"><button className='btn'>Login</button></Link>
                             </>
                     }
-                    <label htmlFor="dashboard-sidebar-drawer" tabIndex={2} className="btn btn-ghost lg:hidden">
-                        <FaAlignJustify></FaAlignJustify>
+                    <label htmlFor="dashboard-sidebar-drawer" tabIndex={2} className="btn btn-ghost  lg:hidden">
+                        <FaAlignJustify ></FaAlignJustify>
                     </label>
                 </div>
             </div>

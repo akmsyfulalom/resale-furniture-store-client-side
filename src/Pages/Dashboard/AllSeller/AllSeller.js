@@ -68,7 +68,7 @@ const AllSeller = () => {
     return (
         <div>
 
-            <h1 className='text-xl font-semibold'>All seller : {sellerUsers?.length}</h1>
+            <h1 className='text-xl font-semibold pb-2'>All seller : {sellerUsers?.length}</h1>
 
             <div>
                 <div className="overflow-x-auto">

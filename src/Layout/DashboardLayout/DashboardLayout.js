@@ -13,16 +13,16 @@ const DashboardLayout = () => {
     const [isSeller] = useSeller(user?.email);
     const [isBuyer] = useBuyer(user?.email);
     return (
-        <div>
+        <div className='bg-gradient-to-r from-violet-100 to-violet-300'>
             <Navbar></Navbar>
             <div className="drawer drawer-mobile">
                 <input id="dashboard-sidebar-drawer" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content ">
+                <div className="drawer-content p-5 ">
                     <Outlet></Outlet>
                 </div>
                 <div className="drawer-side">
-                    <label htmlFor="dashboard-sidebar-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80  text-base-content">
+                    <label htmlFor="dashboard-sidebar-drawer" className="drawer-overlay  "></label>
+                    <ul className="menu p-4 w-80 bg-violet-300 font-mono font-bold text-base-content">
                         {
                             isAdmin && <>
                                 <li><Link to="/dashboard/allSeller">All Seller</Link></li>
