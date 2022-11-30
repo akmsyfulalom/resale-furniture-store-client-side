@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import ViewProductModal from '../../Shop/ViewProductModal';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { FaMapMarkerAlt, FaCalendarAlt } from "react-icons/fa";
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 
 
 
 const AdvertisingSection = () => {
+    const { user } = useContext(AuthContext);
     const [furniture, setFurniture] = useState(null)
 
     const navigate = useNavigate();
@@ -59,9 +61,9 @@ const AdvertisingSection = () => {
     return (
         <div className='mt-20'>
             <h1 className='text-3xl font-bold text-center my-5 font-mono text-purple-800'>Adverting Product</h1>
-            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 my-10 gap-10 '>
+            <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 my-10 gap-10   '>
                 {
-                    advertisement.map(ads => <div key={ads._id} className="card card-compact  bg-base-200  shadow-xl  text-xl text-blue-900 font-mono">
+                    advertisement.map(ads => <div key={ads._id} className="card card-compact   bg-base-200  shadow-xl  text-xl text-blue-900 font-mono">
 
                         <div className='flex p-3'>
                             <div className="avatar mr-2 ">
@@ -78,7 +80,7 @@ const AdvertisingSection = () => {
                         </div>
                         <PhotoProvider>
                             <PhotoView src={ads.product_img}>
-                                <img className='cursor-zoom-in' src={ads.product_img
+                                <img className='cursor-zoom-in h-64 ' src={ads.product_img
                                 } alt="Shoes" />
                             </PhotoView>
                         </PhotoProvider>
@@ -106,7 +108,8 @@ const AdvertisingSection = () => {
                                     <input className='hidden' type="text" name='name' defaultValue={ads.title} />
                                     <input className='hidden' type="text" name='image' defaultValue={ads.product_img} />
                                     <input className='hidden' type="text" name='price' defaultValue={ads.resale_price} />
-                                    <input className='hidden' type="text" name='email' defaultValue={ads.email} />
+                                    <input className='hidden' type="text" name='email' defaultValue={user?.email
+                                    } />
 
                                     <button type='submit' className="btn w-full btn-info text-white bg-gradient-to-r from-orange-300 to-lime-500">Wish List</button>
                                 </form>
