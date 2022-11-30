@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'react-photo-view/dist/react-photo-view.css';
+import 'react-day-picker/dist/style.css';
 import {
   QueryClient,
   QueryClientProvider

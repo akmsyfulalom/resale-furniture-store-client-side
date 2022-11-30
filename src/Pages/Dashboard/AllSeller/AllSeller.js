@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useState } from 'react';
 import toast from 'react-hot-toast';
 import ConfirmationModal from '../../Sheard/ConfirmationModal/ConfirmationModal';
-import DeleteModal from '../../Sheard/DeleteModal/DeleteModal';
+
 
 
 
@@ -23,6 +23,7 @@ const AllSeller = () => {
         queryFn: async () => {
             const res = await fetch('http://localhost:5000/users?role=seller');
             const data = await res.json();
+            console.log('all seller', sellerUsers);
             return data;
         }
     });
@@ -36,7 +37,7 @@ const AllSeller = () => {
             .then(res => res.json())
             .then(data => {
                 if (data.modifiedCount > 0) {
-                    toast.success('Successfully user verified');
+                    toast.success('Successfully seller verified ');
                     refetch();
                 }
             })
@@ -89,7 +90,14 @@ const AllSeller = () => {
                                     <td>{sellerUser.name}</td>
 
                                     <td>{sellerUser.email}</td>
-                                    <td><button onClick={() => handleUserVerify(sellerUser._id)} className="btn btn-success btn-xs text-white">Verify now</button></td>
+                                    <td>
+                                        {
+                                            sellerUser.verified === 'true' ?
+                                                <button onClick={() => handleUserVerify(sellerUser._id)} className="btn btn-success btn-xs btn-disabled text-white">Verified</button>
+                                                :
+                                                <button onClick={() => handleUserVerify(sellerUser._id)} className="btn btn-success btn-xs text-white">Verify now</button>
+                                        }
+                                    </td>
                                     <td><label onClick={() => setDeleteUser(sellerUser)} htmlFor="confirmation-modal" className="btn btn-xs btn-error text-white">Delete</label></td>
 
                                 </tr>)

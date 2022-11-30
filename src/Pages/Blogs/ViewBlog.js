@@ -16,7 +16,7 @@ const ViewBlog = () => {
                     <p>{dec}</p>
                     <div className="card-actions justify-center">
                         <Link to="/blogs" >
-                            <button className="btn btn-primary">Back to Blogs</button>
+                            <button className="btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary">Back to Blogs</button>
                         </Link>
                     </div>
                 </div>

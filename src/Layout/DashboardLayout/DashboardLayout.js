@@ -22,7 +22,7 @@ const DashboardLayout = () => {
                 </div>
                 <div className="drawer-side">
                     <label htmlFor="dashboard-sidebar-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80 bg-base-100 text-base-content">
+                    <ul className="menu p-4 w-80  text-base-content">
                         {
                             isAdmin && <>
                                 <li><Link to="/dashboard/allSeller">All Seller</Link></li>

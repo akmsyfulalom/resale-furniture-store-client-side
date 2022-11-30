@@ -22,7 +22,7 @@ const Navbar = () => {
             .then(error => console.log(error));
     }
     return (
-        <div>
+        <div className=' px-10 text-white bg-gradient-to-r from-secondary to-primary'>
             <div className="navbar px-2 ">
                 <div className="navbar-start">
                     <div className="dropdown">

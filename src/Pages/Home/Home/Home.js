@@ -6,7 +6,7 @@ import OverviewSection from './OverviewSection/OverviewSection';
 
 const Home = () => {
     return (
-        <div>
+        <div className='px-10'>
             <Header></Header>
             <AdvertisingSection></AdvertisingSection>
             <Categories></Categories>

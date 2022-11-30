@@ -9,7 +9,7 @@ import useTitle from '../../Hooks/TitleHooks/Title.Hooks';
 const SignUp = () => {
     useTitle('Register')
     const { register, handleSubmit, formState: { errors } } = useForm()
-    const { createUser, updateUser } = useContext(AuthContext);
+    const { createUser, updateUser, providerLogIn } = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('')
     // const [createdUserEmail, setCreatedUserEmail] = useState('')
     // const [token] = useToken(createdUserEmail)
@@ -49,7 +49,23 @@ const SignUp = () => {
                 setSignUpError(err.message)
             })
 
+    };
+
+
+    const handleGoogleSignUp = () => {
+        providerLogIn()
+            .then(result => {
+                const user = result.user;
+                const grole = 'buyer'
+                saveUserDatabase(user.displayName, user.email, grole)
+                navigate('/')
+            })
+            .catch(error => console.error('Error', error))
     }
+
+
+
+
     const saveUserDatabase = (name, email, role) => {
         const user = { name, email, role };
         fetch('http://localhost:5000/users', {
@@ -106,12 +122,12 @@ const SignUp = () => {
                         <option value="buyer">Buyer</option>
 
                     </select>
-                    <input className='btn btn-accent w-full mt-5 ' type="submit" value='Sign Up' />
+                    <input className='btn btn-success mt-4 w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary' type="submit" value='Sign Up' />
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
                 <p>Already have an account <Link to='/login' className='text-primary'>Login now</Link></p>
                 <div className="divider">OR</div>
-                <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignUp} className='btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primaryl'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

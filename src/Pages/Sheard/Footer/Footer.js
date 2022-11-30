@@ -1,9 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import pay from '../../../assets/pay.png'
 
 const Footer = () => {
     return (
-        <footer className="footer footer-center p-10 bg-base-200 text-base-content rounded">
+        <footer className="footer footer-center p-10 text-white bg-gradient-to-r from-secondary to-primary text-base-content rounded">
+            <div>
+                <h1 className='text-2xl'>Pay with</h1>
+                <figure><img src={pay} alt="" /></figure>
+            </div>
             <div className="grid grid-flow-col gap-4">
                 <Link className="link link-hover">About us</Link>
                 <Link className="link link-hover">Contact</Link>

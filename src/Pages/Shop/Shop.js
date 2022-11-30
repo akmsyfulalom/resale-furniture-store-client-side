@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
 
 import Products from './Products';
-import Tabs from './Tabs/Tabs';
+
 import ViewProductModal from './ViewProductModal';
 
 const Shop = () => {
@@ -18,19 +18,27 @@ const Shop = () => {
         }
     })
 
-    console.log(products)
+
+
+
 
     return (
-        <div>
+        <div className='px-10'>
 
-            <Tabs></Tabs>
-            <h1>Shop</h1>
+
+            <div className='my-20'>
+                <h1 className='text-center text-6xl font-mono font bold text-blue-700'>Shop</h1>
+            </div>
+
+
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-10'>
+
                 {
                     products?.map(product => <Products
                         key={product._id}
                         product={product}
                         setFurniture={setFurniture}
+
 
                     ></Products>)
                 }

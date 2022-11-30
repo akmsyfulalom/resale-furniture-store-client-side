@@ -7,7 +7,7 @@ import router from './Router/Router/Router';
 
 function App() {
   return (
-    <div className="max-w-screen-xl mx-auto px-2 ">
+    <div className=" mx-auto   bg-gradient-to-r from-violet-100 to-violet-300">
       <RouterProvider router={router}></RouterProvider>
       <Toaster></Toaster>
     </div>

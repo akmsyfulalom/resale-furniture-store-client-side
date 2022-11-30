@@ -41,9 +41,8 @@ const Login = () => {
                 setLoginError(err.message)
             })
     }
-    const googleProvider = new GoogleAuthProvider()
     const handleGoogleSignIn = () => {
-        providerLogIn(googleProvider)
+        providerLogIn()
             .then(result => {
                 const user = result.user;
                 navigate('/')
@@ -75,14 +74,14 @@ const Login = () => {
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                         <label className="label"><span className="label-text">Forget password?</span></label>
                     </div>
-                    <input className='btn btn-accent w-full ' type="submit" value='Login' />
+                    <input className='btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary ' type="submit" value='Login' />
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
                 </form>
                 <p>New to Doctors portal <Link to='/signup' className='text-primary'>Create new account</Link></p>
                 <div className="divider">OR</div>
-                <button onClick={handleGoogleSignIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                <button onClick={handleGoogleSignIn} className='btn btn-success w-full mb-3 text-white bg-gradient-to-r from-secondary to-primary'>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );

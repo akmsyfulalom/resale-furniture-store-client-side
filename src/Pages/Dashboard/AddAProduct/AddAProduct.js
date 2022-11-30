@@ -1,14 +1,16 @@
 
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
 import useTitle from '../../../Hooks/TitleHooks/Title.Hooks';
 import './addProduct.css'
+import { format } from 'date-fns';
 
 
 const AddProduct = () => {
     const { user } = useContext(AuthContext);
+    const [selectedDate, setSelectedDate] = useState(new Date());
     useTitle('Add Product');
     const navigate = useNavigate()
 
@@ -97,13 +99,13 @@ const AddProduct = () => {
                         <div className='grid grid-cols-2 gap-4'>
                             <div className="form-control col-span-1">
                                 <label className="label">
-                                    <span className="label-text">Original price</span>
+                                    <span className="label-text">Original price $</span>
                                 </label>
                                 <input type="text" name='original_price' className="input h-10  input-bordered" />
                             </div>
                             <div className="form-control">
                                 <label className="label">
-                                    <span className="label-text">Resale Price</span>
+                                    <span className="label-text">Resale Price $</span>
                                 </label>
                                 <input type="text" name='resale_price' className="input h-10 input-bordered" />
                             </div>
@@ -154,11 +156,16 @@ const AddProduct = () => {
                                 <option value="Metal">Metal</option>
                             </select>
                         </div>
-                        <div className="form-control">
-                            <label className="label">
+                        <div className="form-control ">
+
+
+
+                            <label className="label ">
+
                                 <span className="label-text">Date</span>
                             </label>
-                            <input type="text" name='post_time' className="input h-10 input-bordered input_photo" />
+                            <input type="text" name='post_time' defaultValue={format(selectedDate, 'P')} className="input h-10 input-bordered input_photo" />
+
                         </div>
                         <div className="form-control">
                             <label className="label">

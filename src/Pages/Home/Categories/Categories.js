@@ -16,15 +16,15 @@ const Categories = () => {
             .then(data => setCategories(data))
     }, [])
     return (
-        <div className='my-20'>
-            <h1 className='text-3xl font-bold text-center my-5'>Categories</h1>
+        <div className='my-20 bg-gradient-to-r from-violet-100 to-violet-200 p-3 rounded-lg'>
+            <h1 className='text-3xl font-bold text-center my-5 font-mono text-purple-800'>Categories</h1>
 
             <div className='grid grid-cols-1 lg:grid-cols-5 md:grid-cols-2 gap-10'>
                 {
                     categories?.map(category => <div
                         key={category._id}
                     ><Link to={`/products/${category.category_id}`}>
-                            <div className="card h-64 bg-base-300 shadow-4xl">
+                            <div className="bg-gradient-to-r from-violet-200 to-violet-400     card h-64  shadow-4xl text-xl text-blue-600 font-mono">
                                 <figure className="px-5 pt-10">
                                     <img src={category.img} alt="furnitureCategory" className="rounded-xl" />
                                 </figure>
