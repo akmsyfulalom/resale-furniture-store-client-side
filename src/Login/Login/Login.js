@@ -32,7 +32,7 @@ const Login = () => {
                 const user = result.user;
                 toast.success('User successfully login now')
                 console.log(user)
-                navigate('/')
+                navigate(from, { replace: true })
                 setLogInUserEmail(data.email);
 
             })

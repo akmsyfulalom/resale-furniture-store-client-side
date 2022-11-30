@@ -11,19 +11,24 @@ import AllBuyer from "../../Pages/Dashboard/AllBuyer/AllBuyer";
 import AllSeller from "../../Pages/Dashboard/AllSeller/AllSeller";
 import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/Dashboard/MyProduct/MyProduct";
+
 import ReportItems from "../../Pages/Dashboard/ReportItems/ReportItems";
 import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
 import WishList from "../../Pages/Dashboard/WishList/WishList";
 import CategoriesProduct from "../../Pages/Home/Categories/CategoriesProduct/CategoriesProduct";
 import Home from "../../Pages/Home/Home/Home";
 import ContactUs from "../../Pages/Sheard/ContactUs/ContactUs";
+import Error from "../../Pages/Sheard/Error/Error";
 import Shop from "../../Pages/Shop/Shop";
+
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 const router = createBrowserRouter([
     {
         path: '/',
         element: <MainLayout></MainLayout>,
+        errorElement: <Error></Error>,
         children: [
             {
                 path: '/',
@@ -35,7 +40,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                element: <CategoriesProduct></CategoriesProduct>,
+                element: <PrivateRoute><CategoriesProduct></CategoriesProduct></PrivateRoute>,
                 loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
 
             },
@@ -109,7 +114,8 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/wishlist',
                 element: <WishList></WishList>
-            }
+            },
+
         ]
     }
 

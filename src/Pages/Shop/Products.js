@@ -73,7 +73,7 @@ const Products = ({ product, setFurniture, }) => {
                 <PhotoProvider>
                     <PhotoView src={product_img}>
                         <img className='cursor-zoom-in' src={product_img
-                        } alt="Shoes" />
+                        } alt="product img" />
                     </PhotoView>
                 </PhotoProvider>
             </figure>

@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ViewProductModal from '../../Shop/ViewProductModal'
@@ -5,16 +6,29 @@ import ViewProductModal from '../../Shop/ViewProductModal'
 
 
 const Categories = () => {
-    const [categories, setCategories] = useState([])
+
     const [furniture, setFurniture] = useState(null)
     console.log(furniture)
 
 
-    useEffect(() => {
-        fetch('http://localhost:5000/categories')
-            .then(res => res.json())
-            .then(data => setCategories(data))
-    }, [])
+    const { data: categories = [], isLoading } = useQuery({
+        queryKey: ['categories'],
+        queryFn: async () => {
+            try {
+                const res = await fetch('http://localhost:5000/categories', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                console.log(data)
+                return data;
+            }
+            catch (error) {
+
+            }
+        }
+    });
     return (
         <div className='my-20 bg-gradient-to-r from-violet-100 to-violet-200 p-3 rounded-lg'>
             <h1 className='text-3xl font-bold text-center my-5 font-mono text-purple-800'>Categories</h1>

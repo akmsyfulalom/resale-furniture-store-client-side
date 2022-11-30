@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useState } from 'react';
+import Spinner from '../Sheard/Spinner/Spinner';
 
 import Products from './Products';
 
@@ -7,20 +8,29 @@ import ViewProductModal from './ViewProductModal';
 
 const Shop = () => {
     const [furniture, setFurniture] = useState(null)
-    const { data: products = [], } = useQuery({
+    const { data: products = [], isLoading } = useQuery({
         queryKey: ['products'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/products');
-            const data = await res.json();
+            try {
+                const res = await fetch('http://localhost:5000/products', {
+                    headers: {
+                        authorization: `bearer ${localStorage.getItem('accessToken')}`
+                    }
+                });
+                const data = await res.json();
+                console.log(data)
+                return data;
+            }
+            catch (error) {
 
-            return data;
-
+            }
         }
-    })
+    });
 
 
-
-
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
 
     return (
         <div className='px-10'>
@@ -35,6 +45,7 @@ const Shop = () => {
 
                 {
                     products?.map(product => <Products
+
                         key={product._id}
                         product={product}
                         setFurniture={setFurniture}

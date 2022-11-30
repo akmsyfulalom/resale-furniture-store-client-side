@@ -4,6 +4,7 @@ import { useLoaderData } from 'react-router-dom';
 import CategoriProductsCard from '../CategoriProductsCard/CategoriProductsCard';
 
 const CategoriesProduct = () => {
+
     const categories = useLoaderData()
     console.log(categories);
     return (
