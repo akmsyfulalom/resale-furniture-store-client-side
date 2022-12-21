@@ -21,14 +21,14 @@ const AllSeller = () => {
     const { data: sellerUsers = [], isLoading, refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users?role=seller');
+            const res = await fetch('https://resale-furniture-store-server-side.vercel.app/users?role=seller');
             const data = await res.json();
             console.log('all seller', sellerUsers);
             return data;
         }
     });
     const handleUserVerify = id => {
-        fetch(`http://localhost:5000/user/verify/${id}`, {
+        fetch(`https://resale-furniture-store-server-side.vercel.app/user/verify/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -45,7 +45,7 @@ const AllSeller = () => {
 
     const handleUserDelete = sellerUser => {
 
-        fetch(`http://localhost:5000/user/${sellerUser._id}`, {
+        fetch(`https://resale-furniture-store-server-side.vercel.app/user/${sellerUser._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`

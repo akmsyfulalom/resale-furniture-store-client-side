@@ -12,7 +12,7 @@ const ProductDetails = () => {
     const { data: verifiedUsers = [] } = useQuery({
         queryKey: ['verifiedUsers'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/verifiedUsers?verified=true');
+            const res = await fetch('https://resale-furniture-store-server-side.vercel.app/verifiedUsers?verified=true');
             const data = await res.json()
             console.log(data)
             return data;

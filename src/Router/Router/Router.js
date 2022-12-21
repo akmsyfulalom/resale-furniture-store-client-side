@@ -41,7 +41,7 @@ const router = createBrowserRouter([
             {
                 path: '/products/:id',
                 element: <PrivateRoute><CategoriesProduct></CategoriesProduct></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-furniture-store-server-side.vercel.app/products/${params.id}`)
 
             },
             {
@@ -63,13 +63,13 @@ const router = createBrowserRouter([
             {
                 path: '/blogs',
                 element: <Blogs></Blogs>,
-                loader: () => fetch('http://localhost:5000/blogs')
+                loader: () => fetch('https://resale-furniture-store-server-side.vercel.app/blogs')
 
             },
             {
                 path: '/blogs/:id',
                 element: <ViewBlog></ViewBlog>,
-                loader: ({ params }) => fetch(`http://localhost:5000/blogs/${params.id}`)
+                loader: ({ params }) => fetch(`https://resale-furniture-store-server-side.vercel.app/blogs/${params.id}`)
             },
 
 

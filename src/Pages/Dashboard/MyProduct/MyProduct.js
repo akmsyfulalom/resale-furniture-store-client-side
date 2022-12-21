@@ -3,6 +3,7 @@ import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from "../../../contexts/AuthProvider/AuthProvider";
 import ConfirmationModal from '../../Sheard/ConfirmationModal/ConfirmationModal';
+import Spinner from '../../Sheard/Spinner/Spinner';
 
 
 const MyProduct = () => {
@@ -14,8 +15,8 @@ const MyProduct = () => {
 
     }
 
-    const url = `http://localhost:5000/product?email=${user?.email}`;
-    const { data: products = [], refetch } = useQuery({
+    const url = `https://resale-furniture-store-server-side.vercel.app/product?email=${user?.email}`;
+    const { data: products = [], refetch, isLoading } = useQuery({
         queryKey: ['product'],
         queryFn: async () => {
             const res = await fetch(url)
@@ -25,7 +26,7 @@ const MyProduct = () => {
     })
 
     const handleDeleteProduct = product => {
-        fetch(`http://localhost:5000/product/${product._id}`, {
+        fetch(`https://resale-furniture-store-server-side.vercel.app/product/${product._id}`, {
             method: 'DELETE',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -41,7 +42,7 @@ const MyProduct = () => {
     }
 
     const handleAdsRun = id => {
-        fetch(`http://localhost:5000/advertisement/${id}`, {
+        fetch(`https://resale-furniture-store-server-side.vercel.app/advertisement/${id}`, {
             method: 'PUT',
             headers: {
                 authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -54,6 +55,9 @@ const MyProduct = () => {
                     refetch();
                 }
             })
+    }
+    if (isLoading) {
+        return <Spinner></Spinner>
     }
 
     return (

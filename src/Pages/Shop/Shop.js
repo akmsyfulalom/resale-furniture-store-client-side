@@ -12,7 +12,7 @@ const Shop = () => {
         queryKey: ['products'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/products', {
+                const res = await fetch('https://resale-furniture-store-server-side.vercel.app/products', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }
@@ -57,6 +57,7 @@ const Shop = () => {
             {
                 furniture && <ViewProductModal
                     furniture={furniture}
+                    setFurniture={setFurniture}
                 ></ViewProductModal>
             }
         </div >

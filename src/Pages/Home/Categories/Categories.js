@@ -15,7 +15,7 @@ const Categories = () => {
         queryKey: ['categories'],
         queryFn: async () => {
             try {
-                const res = await fetch('http://localhost:5000/categories', {
+                const res = await fetch('https://resale-furniture-store-server-side.vercel.app/categories', {
                     headers: {
                         authorization: `bearer ${localStorage.getItem('accessToken')}`
                     }

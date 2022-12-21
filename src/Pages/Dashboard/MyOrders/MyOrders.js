@@ -1,18 +1,23 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import Spinner from '../../Sheard/Spinner/Spinner';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext)
 
-    const { data: orders = [] } = useQuery({
+    const { data: orders = [], isLoading, } = useQuery({
         queryKey: ['myOrder'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myOrder?email=${user?.email}`);
+            const res = await fetch(`https://resale-furniture-store-server-side.vercel.app/myOrder?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
     })
+    if (isLoading) {
+
+        return <Spinner></Spinner>
+    }
 
     return (
         <div className='font-mono font-semibold'>
@@ -31,6 +36,7 @@ const MyOrders = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {
                             orders?.map((order, i) => <tr key={order._id}>
                                 <th>{i + 1}</th>
@@ -47,7 +53,7 @@ const MyOrders = () => {
 
                                 <td>{order.meet}</td>
                                 <td>${order.price}</td>
-                                <td><button className='btn btn-xs btn-success  text-white bg-gradient-to-r from-secondary to-primary'>Pay</button></td>
+                                <td><button className='btn btn-xs btn-success   text-white bg-gradient-to-r from-secondary to-primary'>Pay</button></td>
                             </tr>)
                         }
 

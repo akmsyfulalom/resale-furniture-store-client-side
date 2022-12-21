@@ -1,10 +1,21 @@
 import React from 'react';
-import PacmanLoader from 'react-spinners/PacmanLoader';
+import { RevolvingDot } from 'react-loader-spinner';
+
 
 const Spinner = () => {
     return (
-        <div className='flex justify-center mt-24'>
-            <PacmanLoader className='text-gradient-to-r from-secondary to-primary' />
+        <div className='flex justify-center items-center mt-28 '>
+            <RevolvingDot
+                className="h-28 w-28 rounded-full text-fuchsia-700 "
+
+
+
+                secondaryColor=''
+                ariaLabel="revolving-dot-loading"
+                wrapperStyle={{}}
+                wrapperClass=""
+                visible={true}
+            />
         </div>
     );
 };

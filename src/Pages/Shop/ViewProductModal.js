@@ -5,7 +5,7 @@ import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
 
-const ProductDetailModal = ({ furniture }) => {
+const ProductDetailModal = ({ furniture, setFurniture }) => {
     const { user } = useContext(AuthContext);
 
     const { title, post_time, category, resale_price, original_price, product_img } = furniture;
@@ -24,7 +24,7 @@ const ProductDetailModal = ({ furniture }) => {
         const addedOrders = {
             email, number, title, price, img, meet,
         }
-        fetch('http://localhost:5000/addedorders', {
+        fetch('https://resale-furniture-store-server-side.vercel.app/addedorders', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -36,8 +36,10 @@ const ProductDetailModal = ({ furniture }) => {
                 if (data.acknowledged) {
                     toast.success('Order added successfully')
                     form.reset()
-                    navigate('/dashboard/myOrders')
+                    // navigate('/dashboard/myOrders')
                     console.log(data);
+                    setFurniture(null)
+
                 }
             })
     };

@@ -19,7 +19,7 @@ const AdvertisingSection = () => {
 
         queryKey: ['advertisement'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/advertisement')
+            const res = await fetch('https://resale-furniture-store-server-side.vercel.app/advertisement')
             const data = await res.json()
 
             return data;
@@ -37,7 +37,7 @@ const AdvertisingSection = () => {
         console.log(name, image, price, email)
         const adsPageToWishlist = { name, image, price, email }
 
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://resale-furniture-store-server-side.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -123,6 +123,7 @@ const AdvertisingSection = () => {
             {
                 furniture && <ViewProductModal
                     furniture={furniture}
+                    setFurniture={setFurniture}
                 ></ViewProductModal>
             }
         </div>

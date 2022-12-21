@@ -32,7 +32,7 @@ const CategoriProductsCard = ({ category }) => {
         console.log(name, image, price, email)
         const adsPageToWishlist = { name, image, price, email }
 
-        fetch('http://localhost:5000/wishlist', {
+        fetch('https://resale-furniture-store-server-side.vercel.app/wishlist', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

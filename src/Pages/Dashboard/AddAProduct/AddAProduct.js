@@ -55,7 +55,7 @@ const AddProduct = () => {
                         seller_name: seller_name,
                         email: email
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://resale-furniture-store-server-side.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'

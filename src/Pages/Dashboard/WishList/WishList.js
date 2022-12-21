@@ -2,15 +2,16 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../contexts/AuthProvider/AuthProvider';
+import Spinner from '../../Sheard/Spinner/Spinner';
 
 const WishList = () => {
     const { user } = useContext(AuthContext);
 
 
-    const { data: myWishlist = [] } = useQuery({
+    const { data: myWishlist = [], isLoading } = useQuery({
         queryKey: ['myWishlist'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/myWishlist?email=${user?.email}`);
+            const res = await fetch(`https://resale-furniture-store-server-side.vercel.app/myWishlist?email=${user?.email}`);
             const data = await res.json();
             console.log(data);
             return data;
@@ -19,7 +20,9 @@ const WishList = () => {
 
 
 
-
+    if (isLoading) {
+        return <Spinner></Spinner>
+    }
 
     return (
         <div className='font-mono font-semibold'>
@@ -37,6 +40,7 @@ const WishList = () => {
                         </tr>
                     </thead>
                     <tbody>
+
                         {
                             myWishlist?.map((wishlist, i) => <tr key={wishlist._id}>
                                 <th>{i + 1}</th>
